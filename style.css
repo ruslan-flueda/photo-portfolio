@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Crimson Pro', Georgia, serif;
+}
+
+.text {
+  font-size: 1rem;
+}
+
+/* Обычное начертание */
+@font-face {
+  font-family: 'Crimson Pro';
+  src: url('./fonts/crimson-pro-normal-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+/* Курсив */
+@font-face {
+  font-family: 'Crimson Pro';
+  src: url('./fonts/crimson-pro-italic-latin.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+.photo {
+  width: 40vw;
+}
+
+.content {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  top: 50%;
+  transform: translateY(-50%);
+  align-items: center;
+  width: 100%;
+  padding: 0 2vw;
+}
+
+.buttons {
+  display: flex;
+  gap: 2vw;
+}
+
+.photos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 89px;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.photo-counter {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-family: 'Crimson Pro', Georgia, serif;
+  color: #000;
+  pointer-events: none;
+}

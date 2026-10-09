@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inspiration</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="content">
+      <p class="text">Ruslan Khairullin</p>
+      <div class="buttons">
+        <a class="link text" href="index.html">portfolio</a>
+        <a class="link text" href="https://t.me/flueda">contact</a>
+      </div>
+    </div>
+
+    <div class="photo-counter text" aria-label="Photo number"></div>
+
+    <div class="photos">
+      <a
+        href="https://www.youtube.com/watch?v=jeFqgBqHp2Q&list=LL&index=2"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720.jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+
+      <a
+        href="https://www.youtube.com/watch?v=mgslSnbkF-c&list=LL&index=9"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720 (1).jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+
+      <a
+        href="https://www.youtube.com/watch?v=2V1O1XMwdSY&list=LL&index=23"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720 (2).jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+
+      <a
+        href="https://www.youtube.com/watch?v=WrDEAmSb9OY&rco=1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720 (3).jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+
+      <a
+        href="https://www.youtube.com/watch?v=x4Dpv7xc0xQ&list=LL&index=53"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720 (4).jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+
+      <a
+        href="https://www.youtube.com/watch?v=6HBxWrmI8OU&list=LL&index=85"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720 (5).jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+
+      <a
+        href="https://www.youtube.com/watch?v=bQ90GKgy7Kc&list=LL&index=118"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720 (6).jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+
+      <a
+        href="https://www.youtube.com/watch?v=oYxohKbeMZw&list=RDoYxohKbeMZw&start_radio=1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720 (7).jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+
+      <a
+        href="https://www.youtube.com/watch?v=iXMmlpL4xQE&list=RDoYxohKbeMZw&index=6"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720 (8).jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+
+      <a
+        href="https://www.youtube.com/watch?v=x6_mbnsh6VU&list=RDoYxohKbeMZw&index=27"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720 (9).jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+
+      <a
+        href="https://www.youtube.com/watch?v=OB38tTXHqNA&list=RDOB38tTXHqNA&start_radio=1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="photo"
+          src="preview/Maxresdefault 1280x720 (10).jpg"
+          alt="Смотреть видео"
+        />
+      </a>
+    </div>
+
+    <script>
+      const photos = document.querySelectorAll('.photos .photo');
+      const counter = document.querySelector('.photo-counter');
+      let updateScheduled = false;
+
+      function updatePhotoCounter() {
+        const viewportCenter = window.innerHeight / 2;
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        photos.forEach((photo, index) => {
+          const bounds = photo.getBoundingClientRect();
+          const distance = Math.abs(
+            bounds.top + bounds.height / 2 - viewportCenter,
+          );
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        counter.textContent = `${closestIndex + 1}/${photos.length}`;
+        updateScheduled = false;
+      }
+
+      function schedulePhotoCounterUpdate() {
+        if (updateScheduled) return;
+        updateScheduled = true;
+        requestAnimationFrame(updatePhotoCounter);
+      }
+
+      schedulePhotoCounterUpdate();
+      window.addEventListener('scroll', schedulePhotoCounterUpdate, {
+        passive: true,
+      });
+      window.addEventListener('resize', schedulePhotoCounterUpdate);
+      window.addEventListener('load', schedulePhotoCounterUpdate);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="content">
+      <p class="text">Ruslan Khairullin</p>
+      <div class="buttons">
+        <a class="link text" href="inspiration.html">inspiration</a>
+        <a class="link text" href="https://t.me/flueda">contact</a>
+      </div>
+    </div>
+
+    <div class="photo-counter text" aria-label="Photo number"></div>
+
+    <div class="photos">
+      <img class="photo" src="photo/2026-10-06 15.35.55.jpg" alt="" />
+      <img class="photo" src="photo/IMG_2545.JPG" alt="" />
+      <img class="photo" src="photo/IMG_2758.JPG" alt="" />
+      <img class="photo" src="photo/IMG_3000.JPG" alt="" />
+      <img class="photo" src="photo/IMG_3017.JPG" alt="" />
+      <img class="photo" src="photo/IMG_3079.JPG" alt="" />
+      <img class="photo" src="photo/IMG_3202.JPG" alt="" />
+      <img class="photo" src="photo/IMG_3255.JPG" alt="" />
+      <img class="photo" src="photo/IMG_3523.JPG" alt="" />
+      <img class="photo" src="photo/IMG_3587.JPG" alt="" />
+      <img class="photo" src="photo/IMG_3600.JPG" alt="" />
+      <img class="photo" src="photo/IMG_3678.JPG" alt="" />
+      <img class="photo" src="photo/IMG_3748.JPG" alt="" />
+    </div>
+    <script>
+      const photos = document.querySelectorAll('.photos .photo');
+      const counter = document.querySelector('.photo-counter');
+      let updateScheduled = false;
+
+      function updatePhotoCounter() {
+        const viewportCenter = window.innerHeight / 2;
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        photos.forEach((photo, index) => {
+          const bounds = photo.getBoundingClientRect();
+          const distance = Math.abs(
+            bounds.top + bounds.height / 2 - viewportCenter,
+          );
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        counter.textContent = `${closestIndex + 1}/${photos.length}`;
+        updateScheduled = false;
+      }
+
+      function schedulePhotoCounterUpdate() {
+        if (updateScheduled) return;
+        updateScheduled = true;
+        requestAnimationFrame(updatePhotoCounter);
+      }
+
+      schedulePhotoCounterUpdate();
+      window.addEventListener('scroll', schedulePhotoCounterUpdate, {
+        passive: true,
+      });
+      window.addEventListener('resize', schedulePhotoCounterUpdate);
+      window.addEventListener('load', schedulePhotoCounterUpdate);
+    </script>
+  </body>
+</html>
